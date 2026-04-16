@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# Zodiac function
 def get_zodiac(day, month):
     if (month == 3 and day >= 21) or (month == 4 and day <= 19):
         return "Aries ♈"
@@ -30,7 +29,6 @@ def get_zodiac(day, month):
         return "Pisces ♓"
     return "Unknown"
 
-# Horoscope function
 def get_horoscope(sign):
     data = {
         "Aries ♈": "Aaj ka din energetic rahega 💪",
@@ -48,7 +46,6 @@ def get_horoscope(sign):
     }
     return data.get(sign, "")
 
-# Main route
 @app.route('/', methods=['GET', 'POST'])
 def home():
     zodiac = ""
@@ -62,5 +59,4 @@ def home():
 
     return render_template('index.html', zodiac=zodiac, horoscope=horoscope)
 
-# Run app
 app.run(debug=True)
